@@ -1,6 +1,6 @@
 
 
-new Vue({
+regForm = new Vue({
     el: '#form',
     data: {
         regForms: [
@@ -11,11 +11,13 @@ new Vue({
         email: null,
         lastName: null,
         phoneNumber: null,
-        firstQuestion: null,
-        secondQuestion: null,
         password: null,
         retypePassword: null,
         whyLearnCoding: null,
+        date:null,
+        radioBtn: null,
+        firstQuestion: null,
+        secondQuestion: null,
 
         nameError: false,
         lastNameError: false,
@@ -25,11 +27,17 @@ new Vue({
         phoneNumberError: false,
         whyLearnCodingError: false,
         passwordMatchError: false,
-        sub: false,
+        dateError: false,
+        firstQuestionError: false,
+        secondQuestionError: false,
+        radioBtnError: false,
+
+        disableSubmitBtn: false
 
     },
     methods: {
         validate() {
+
                 this.nameError = this.name === null;
                 this.lastNameError = this.lastName === null;
                 this.emailError = this.email === null;
@@ -37,6 +45,10 @@ new Vue({
                 this.passwordError = this.password === null;
                 this.retypePasswordError = this.retypePassword === null;
                 this.phoneNumberError = this.phoneNumber === null;
+                this.dateError = this.date === null;
+                this.firstQuestionError = this.firstQuestion === null;
+                this.secondQuestionError = this.secondQuestion === null;
+                this.radioBtnError = this.radioBtn === null;
 
                 if (this.password !== this.retypePassword) {
                     this.passwordError = true;
@@ -47,19 +59,34 @@ new Vue({
         },
         checkErrorCount(){
             if(
-                this.nameError === false &&
-                this.lastNameError === false &&
-                this.emailError === false &&
-                this.passwordError === false &&
-                this.retypePasswordError === false &&
-                this.phoneNumberError === false &&
-                this.whyLearnCodingError === false &&
-                this.passwordMatchError === false
+                !this.nameError &&
+                !this.lastNameError &&
+                !this.emailError &&
+                !this.passwordError &&
+                !this.retypePasswordError &&
+                !this.phoneNumberError &&
+                !this.whyLearnCodingError &&
+                !this.passwordMatchError &&
+                !this.dateError &&
+                !this.firstQuestionError &&
+                !this.secondQuestionError  &&
+                !this.radioBtnError
                 ){
                 this.submit();
-            }else{
-                this.sub = false;
             }
+        },
+        clearFields(){
+            this.name = null;
+            this.lastName = null;
+            this.email = null;
+            this.password = null;
+            this.retypePassword = null;
+            this.phoneNumber = null;
+            this.whyLearnCoding = null;
+            this.date = null;
+            this.firstQuestion = null;
+            this.secondQuestion = null;
+            this.radioBtn = null;
         },
         submit(){
             setTimeout(() => {
@@ -70,15 +97,23 @@ new Vue({
                     "email" : this.email,
                     "password" : this.password,
                     "phoneNumber" : this.phoneNumber,
-                    "why Learn Coding" : this.whyLearnCoding,
+                    "date" : this.date,
+                    "whyLearnCoding" : this.whyLearnCoding,
+                    "firstQuestion" : this.firstQuestion,
+                    "secondQuestion" : this.secondQuestion,
+                    "radioBtnQuestion" : this.radioBtn
                 };
+                this.regForms.push(form);
                 var jsonString = JSON.stringify(form);
-
+                    <!-- clear  field after submit-->
                 alert("THere Json: " + jsonString);
+                this.clearFields();
 
             }, 1500)
         }
     }
 
 });
+
+console.log(regForm.regForms);
 
