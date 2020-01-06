@@ -18,6 +18,7 @@ regForm = new Vue({
         radioBtn: null,
         firstQuestion: null,
         secondQuestion: null,
+        notSubmit: true,
 
         nameError: false,
         lastNameError: false,
@@ -32,7 +33,6 @@ regForm = new Vue({
         secondQuestionError: false,
         radioBtnError: false,
 
-        disableSubmitBtn: false
 
     },
     methods: {
@@ -89,6 +89,7 @@ regForm = new Vue({
             this.radioBtn = null;
         },
         submit(){
+            this.notSubmit = false;
             setTimeout(() => {
                 alert("Coffe time!...  application send ;D ");
                 form = {
@@ -108,12 +109,12 @@ regForm = new Vue({
                     <!-- clear  field after submit-->
                 alert("THere Json: " + jsonString);
                 this.clearFields();
-
+                this.notSubmit = true;
             }, 1500)
         }
     }
 
 });
 
-console.log(regForm.regForms);
+
 

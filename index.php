@@ -64,7 +64,7 @@
             </div>
         </div>
 
-        <div class="form-row bg-green-100 rounded mx-1">
+        <div class="form-row bg-green-100 rounded mx-1" v-if="notSubmit">
 
             <div class="p-1">
                 <div class="form-group col-sm-12">
@@ -102,6 +102,12 @@
                 </div>
             </div>
         </div>
+
+        <div class="form-row bg-green-100 rounded mx-1" v-if="!notSubmit">
+            <div class="col-8">
+                <h3>Sending.....</h3>
+            </div>
+        </div>
         <div class="form-row mt-2">
             <div class="form-group col-sm-12">
                  <button id="submit" type="submit" class="btn btn-secondary">Register</button>
@@ -114,6 +120,8 @@
 
 
 <?php include "footer.php" ?>;
+
+
 
 
 
